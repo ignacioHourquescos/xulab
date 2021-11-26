@@ -71,12 +71,12 @@ const listenMessage = () =>{
 
 client.on('message', msg => {
    const {from, to, body} = msg;
-  if (msg.body == '!ping') {
-    msg.reply('pong');
-  } else if (msg.body == 'good morning') {
-    msg.reply('selamat pagi');
-  } 
+   if (from=='5491153777740@c.us' || from=='5491150588802@c.us' || from=='5491165106333@c.us' || from=='5491148889851@c.us'){
+      sendMessage(from, '🤖...');
 
+      }else{
+         console.log("alguien mando mensaje")
+      }
 
 
   const sendWithApi = (req, res) =>{
