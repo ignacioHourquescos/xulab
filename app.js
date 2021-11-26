@@ -54,27 +54,39 @@ const client = new Client({
   session: sessionCfg
 });
 
+const listenMessage = () =>{
+   client.on('message', (msg) => {
+      const {from, to, body} = msg;
+      console.log(from, to,body);
+      // print("prueba.pdf").then(console.log);
+      if (from=='5491153777740@c.us' || from=='5491150588802@c.us' || from=='5491165106333@c.us' || from=='5491148889851@c.us'){
+      sendMessage(from, '🤖...');
+      sendMedia(from)
+      }else{
+         console.log("alguien mando mensaje")
+      }
+      // saveHistorial();
+   })
+}
+
 client.on('message', msg => {
+   const {from, to, body} = msg;
   if (msg.body == '!ping') {
     msg.reply('pong');
   } else if (msg.body == 'good morning') {
     msg.reply('selamat pagi');
-  } else if (msg.body == '!groups') {
-    client.getChats().then(chats => {
-      const groups = chats.filter(chat => chat.isGroup);
+  } 
 
-      if (groups.length == 0) {
-        msg.reply('You have no group yet.');
-      } else {
-        let replyMsg = '*YOUR GROUPS*\n\n';
-        groups.forEach((group, i) => {
-          replyMsg += `ID: ${group.id._serialized}\nName: ${group.name}\n\n`;
-        });
-        replyMsg += '_You can use the group id to send a message to the group._'
-        msg.reply(replyMsg);
-      }
-    });
-  }
+
+
+  const sendWithApi = (req, res) =>{
+   const {message,to} = req.body;
+   const newNumber = `${to}@c.us`
+   sendMessage(newNumber, message)
+   console.log(message, to)
+   res.send({status: 'Enviado'})
+}
+
 
   // Downloading media
   if (msg.hasMedia) {
