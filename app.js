@@ -72,8 +72,10 @@ const listenMessage = () =>{
 client.on('message', msg => {
    const {from, to, body} = msg;
    if (from=='5491153777740@c.us' || from=='5491150588802@c.us' || from=='5491165106333@c.us' || from=='5491148889851@c.us'){
-      sendMessage(from, '🤖...');
-
+      client.sendMessage(from, '🤖...');
+      // const sendMessage = (to, message) =>{
+      //    client.sendMessage(to, message)
+      // }
       }else{
          console.log("alguien mando mensaje")
       }
