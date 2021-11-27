@@ -54,20 +54,7 @@ const client = new Client({
   session: sessionCfg
 });
 
-const listenMessage = () =>{
-   client.on('message', (msg) => {
-      const {from, to, body} = msg;
-      console.log(from, to,body);
-      // print("prueba.pdf").then(console.log);
-      if (from=='5491153777740@c.us' || from=='5491150588802@c.us' || from=='5491165106333@c.us' || from=='5491148889851@c.us'){
-      sendMessage(from, '🤖...');
-      sendMedia(from)
-      }else{
-         console.log("alguien mando mensaje")
-      }
-      // saveHistorial();
-   })
-}
+
 
 client.on('message', msg => {
    const {from, to, body} = msg;
